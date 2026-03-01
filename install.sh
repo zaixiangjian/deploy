@@ -486,6 +486,11 @@ function welcome_aurora() {
     ————————————
     18. 修改安全密钥（默认 ${DEFAULT_SECURITY_KEY}十分不安全，建议定期更换）
     ————————————
+使用18号之后
+cd到指定安装目录
+然后重新执行更改密钥
+docker compose -f docker-compose.yml up -d
+    ————————————
     0.  退出脚本
     ————————————
     ${Font_color_suffix}"
