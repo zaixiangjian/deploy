@@ -34,6 +34,7 @@ jobs:
             "zaixiangjian/caddy"
             "zaixiangjian/nexterm"
             "zaixiangjian/sun-panel"
+            "zaixiangjian/sun-panel-guanfang"
           )
 
           echo "Processing ${#IMAGES[@]} images..."
