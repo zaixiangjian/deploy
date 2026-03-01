@@ -1,0 +1,25 @@
+- name: Pull all images to reset Docker Hub timer
+        run: |
+          IMAGES=(
+            "zaixiangjian/aurora-redis"
+            "zaixiangjian/aurora-postgres"
+            "zaixiangjian/aurora-frontend"
+            "zaixiangjian/aurora-worker"
+            "zaixiangjian/aurora-backend"
+            "zaixiangjian/minio"
+            "zaixiangjian/backrest"
+            "zaixiangjian/certimate"
+            "zaixiangjian/openlist"
+            "zaixiangjian/hitokoto-api"
+            "zaixiangjian/caddy"
+            "zaixiangjian/nexterm"
+            "zaixiangjian/sun-panel"
+          )
+          
+          echo "Starting to pull ${#IMAGES[@]} images..."
+          for image in "${IMAGES[@]}"; do
+            echo "Pulling $image..."
+            # 💡 核心修复：添加 || true，失败了也继续执行，防止脚本中断
+            docker pull $image || echo "Failed to pull $image, skipping..."
+          done
+          echo "Process finished."
