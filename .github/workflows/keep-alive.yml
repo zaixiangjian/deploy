@@ -1,18 +1,5 @@
-name: Bulk Docker Hub Keep Alive
-
-on:
-  schedule:
-    # 设定为每 3 个月执行一次，或者每月执行一次（推荐）
-    - cron: '0 0 1 * *' 
-  workflow_dispatch: # 允许你在 GitHub 页面上手动点击按钮触发
-
-jobs:
-  keep-alive:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pull all images to reset Docker Hub timer
+- name: Pull all images to reset Docker Hub timer
         run: |
-          # 在这里列出你需要保活的所有镜像
           IMAGES=(
             "zaixiangjian/aurora-redis"
             "zaixiangjian/aurora-postgres"
@@ -32,6 +19,7 @@ jobs:
           echo "Starting to pull ${#IMAGES[@]} images..."
           for image in "${IMAGES[@]}"; do
             echo "Pulling $image..."
-            docker pull $image
+            # 💡 核心修复：添加 || true，失败了也继续执行，防止脚本中断
+            docker pull $image || echo "Failed to pull $image, skipping..."
           done
-          echo "All images pulled successfully."
+          echo "Process finished."
