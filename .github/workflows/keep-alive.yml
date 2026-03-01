@@ -7,7 +7,7 @@ name: Bulk Docker Hub Keep Alive
 on:
   schedule:
     # 设定为每月1号 UTC 时间 0点运行一次
-    - cron: '0 0 1 * *'   # 每月1号 UTC 0点
+    - cron: '0 8 10 * *'   # 每月10号 UTC 0点
   workflow_dispatch:
 
 jobs:
